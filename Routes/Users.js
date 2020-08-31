@@ -1,19 +1,19 @@
-const express = require('express')
-const route = express.Router();
-const { verifyToken } = require('../Helpers/token')
+const route = require('express').Router()
+// const { verifyToken } = require('../Helpers/token')
+const { jwtAuthenticate } = require('../Helpers/auth');
 
 const {
     getAllUser,
     addUser,
+    login,
     updateUser,
-    deleteUser,
-    login
+    deleteUser
 } = require('../Controllers/Users')
 
 route.get('/users', getAllUser)
 route.post('/users', addUser)
-route.patch('/users/:id', verifyToken, updateUser)
-route.delete('/users/:id', verifyToken, deleteUser)
 route.post('/users/login', login)
+route.patch('/users/:id', jwtAuthenticate, updateUser)
+route.delete('/users/:id', deleteUser)
 
 module.exports = route

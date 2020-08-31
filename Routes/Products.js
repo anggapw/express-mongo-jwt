@@ -8,7 +8,6 @@ const {
     addProduct,
     updateProduct,
     deleteProduct
-    // login
 } = require('../Controllers/Products')
 
 route.get('/products', getAllProduct)
